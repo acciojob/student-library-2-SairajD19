@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "authors")
 public class Author {
 
@@ -29,7 +28,7 @@ public class Author {
     @JsonIgnoreProperties("author")
     private List<Book> booksWritten;
 
-
-
+    public Author() {
+    }
 }
 

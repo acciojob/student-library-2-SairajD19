@@ -10,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
 @Table(name = "books")
 public class Book {
 
@@ -42,5 +41,7 @@ public class Book {
     private List<Transaction> transactions;
 
 
+    public Book() {
+    }
 }
 
