@@ -2,15 +2,12 @@ package com.driver.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@Table(name = "books")
+@Table
 public class Book {
 
     @Id
@@ -40,14 +37,11 @@ public class Book {
     @JsonIgnoreProperties("book")
     private List<Transaction> transactions;
 
-
-    public Book() {
-    }
-
     public Book(String name, Genre genre, Author author) {
         this.name = name;
         this.genre = genre;
         this.author = author;
+        this.available = true;
     }
 
     public int getId() {
@@ -105,5 +99,7 @@ public class Book {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
-}
 
+    public Book() {
+    }
+}

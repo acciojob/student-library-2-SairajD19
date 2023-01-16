@@ -1,7 +1,6 @@
 package com.driver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,8 +8,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "students")
-@Data
+@Table
 public class Student {
 
     @Id
@@ -23,9 +21,6 @@ public class Student {
     private int age; // in case we want to check on the basis of age while issuing
 
     private String country;
-
-    public Student() {
-    }
 
     // alter table student add foreign key constraint card references Card(id)
 
@@ -59,6 +54,9 @@ public class Student {
         this.name = name;
         this.age = age;
         this.country = country;
+    }
+
+    public Student() {
     }
 
     public int getId() {
