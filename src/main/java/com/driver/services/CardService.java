@@ -15,32 +15,10 @@ public class CardService {
     CardRepository cardRepository3;
 
     public Card createAndReturn(Student student){
-//        Student stu = new Student();
-//        stu.setAge(studentRequestDto.getAge());
-//        stu.setCountry(studentRequestDto.getCountry());
-//        stu.setName(studentRequestDto.getName());
-//        stu.setEmail(studentRequestDto.getEmail());
-//
-//        Card newcard=new Card();
-//        newcard.setCardStatus(CardStatus.ACTIVATED);
-//        newcard.setStudent(stu);
-//        stu.setCard(newcard);
-//        studentRepository.save(stu);
-
-//        Card card = new Card();
-//        card.setStudent(student);
-//        card.setCardStatus(CardStatus.ACTIVATED);
-//        cardRepository3.save(card);
-//        //link student with a new card
-//        return card;
-        Card card=new Card();
-
+        Card card = new Card();
         card.setStudent(student);
-
         student.setCard(card);
-
         cardRepository3.save(card);
-
         return card;
     }
 
