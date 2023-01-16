@@ -1,11 +1,15 @@
 package com.driver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
+@Table(name = "authors")
 public class Author {
 
     @Id

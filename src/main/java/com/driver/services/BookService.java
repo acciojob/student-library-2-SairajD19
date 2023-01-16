@@ -5,6 +5,7 @@ import com.driver.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,11 +16,37 @@ public class BookService {
     BookRepository bookRepository2;
 
     public void createBook(Book book){
+
         bookRepository2.save(book);
     }
 
     public List<Book> getBooks(String genre, boolean available, String author){
-        List<Book> books = null; //find the elements of the list by yourself
-        return books;
+
+        /*i) If genre=”X”, availability = true, and author=null;
+        we require the list of all books which are available and have genre “X”.
+        Note that these books can be written by any author.*/
+        List<Book> allBooks = bookRepository2.findAll();
+        List<Book> result = new ArrayList<>();
+        if(author==null){
+            for(Book book: allBooks){
+                if(book.getGenre().name()==genre && book.isAvailable()){
+                    result.add(book);
+                }
+            }
+        }
+        else{
+            for(Book book: allBooks){
+                if(book.getGenre().name()==genre && !book.isAvailable() && book.getAuthor().getName()==author){
+                    result.add(book);
+                }
+            }
+        }
+
+        /*ii) If genre=”Y”, availability = false, and author=”A”;
+        we require the list of all books which are written by author “A”, have genre “Y”, and are currently unavailable.
+        */
+
+        //List<Book> books = null; //find the elements of the list by yourself
+        return result;
     }
 }

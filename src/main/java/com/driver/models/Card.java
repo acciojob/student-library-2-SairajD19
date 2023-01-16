@@ -1,6 +1,7 @@
 package com.driver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name = "cards")
+@Data
 public class Card {
 
     @Id
