@@ -2,6 +2,7 @@ package com.driver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.test.autoconfigure.data.cassandra.DataCassandraTest;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "authors")
 public class Author {
 
@@ -27,8 +29,7 @@ public class Author {
     @JsonIgnoreProperties("author")
     private List<Book> booksWritten;
 
-    public Author() {
-    }
+
 
 }
 
