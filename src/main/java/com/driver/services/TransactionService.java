@@ -44,33 +44,23 @@ public class TransactionService {
         transaction.setCard(card);
         transaction.setIssueOperation(true);
 
-
-        //conditions required for successful transaction of issue book:
-        //1. book is present and available
-        // If it fails: throw new Exception("Book is either unavailable or not present");
         if(book == null || !book.isAvailable()){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
-            bookRepository5.updateBook(book);
             transactionRepository5.save(transaction);
             throw new Exception("Book is either unavailable or not present");
         }
-        //2. card is present and activated
-        // If it fails: throw new Exception("Card is invalid");
+
         if(card == null || card.getCardStatus().equals(CardStatus.DEACTIVATED)){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
-            bookRepository5.updateBook(book);
             transactionRepository5.save(transaction);
             throw new Exception("Card is invalid");
         }
-        //3. number of books issued against the card is strictly less than max_allowed_books
-        // If it fails: throw new Exception("Book limit has reached for this card");
-        if(card.getBooks().size() >= max_allowed_books) {
+
+        if(card.getBooks().size() >= max_allowed_books){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
-            bookRepository5.updateBook(book);
             transactionRepository5.save(transaction);
             throw new Exception("Book limit has reached for this card");
         }
-        //If the transaction is successful, save the transaction to the list of transactions and return the id
 
         book.setCard(card);
         book.setAvailable(false);
