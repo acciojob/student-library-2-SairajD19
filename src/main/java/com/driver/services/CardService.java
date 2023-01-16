@@ -27,11 +27,20 @@ public class CardService {
 //        stu.setCard(newcard);
 //        studentRepository.save(stu);
 
-        Card card = new Card();
+//        Card card = new Card();
+//        card.setStudent(student);
+//        card.setCardStatus(CardStatus.ACTIVATED);
+//        cardRepository3.save(card);
+//        //link student with a new card
+//        return card;
+        Card card=new Card();
+
         card.setStudent(student);
-        card.setCardStatus(CardStatus.ACTIVATED);
+
+        student.setCard(card);
+
         cardRepository3.save(card);
-        //link student with a new card
+
         return card;
     }
 
