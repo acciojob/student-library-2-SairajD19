@@ -25,21 +25,37 @@ public class BookService {
         /*i) If genre=”X”, availability = true, and author=null;
         we require the list of all books which are available and have genre “X”.
         Note that these books can be written by any author.*/
-        List<Book> allBooks = bookRepository2.findAll();
-        List<Book> result = new ArrayList<>();
-        if(author==null){
-            for(Book book: allBooks){
-                if(book.getGenre().name()==genre && book.isAvailable()){
-                    result.add(book);
-                }
-            }
+//        List<Book> allBooks = bookRepository2.findAll();
+//        List<Book> result = new ArrayList<>();
+//        if(author==null){
+//            for(Book book: allBooks){
+//                if(book.getGenre().name()==genre && book.isAvailable()){
+//                    result.add(book);
+//                }
+//            }
+//        }
+//        else{
+//            for(Book book: allBooks){
+//                if(book.getGenre().name()==genre && !book.isAvailable() && book.getAuthor().getName()==author){
+//                    result.add(book);
+//                }
+//            }
+//        }
+        if(genre != null && author != null)
+        {
+            return bookRepository2.findBooksByGenreAuthor(genre, author, available);
         }
-        else{
-            for(Book book: allBooks){
-                if(book.getGenre().name()==genre && !book.isAvailable() && book.getAuthor().getName()==author){
-                    result.add(book);
-                }
-            }
+        else if (genre != null)
+        {
+            return bookRepository2.findBooksByGenre(genre, available);
+        }
+        else if (author != null)
+        {
+            return bookRepository2.findBooksByAuthor(author, available);
+        }
+        else
+        {
+            return bookRepository2.findByAvailability(available);
         }
 
         /*ii) If genre=”Y”, availability = false, and author=”A”;
@@ -47,6 +63,6 @@ public class BookService {
         */
 
         //List<Book> books = null; //find the elements of the list by yourself
-        return result;
+        //return result;
     }
 }
